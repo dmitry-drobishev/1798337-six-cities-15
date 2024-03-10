@@ -1,4 +1,4 @@
-export type offerType =
+export type OfferType =
 {
   id: string;
   title: string;
@@ -11,7 +11,7 @@ export type offerType =
 };
 
 
-const OffersMock: offerType[] = [
+const OffersMock: OfferType[] = [
   {
     'id': 'a4938522-593f-4b60-8c61-8b21a1e0f319',
     'title': 'Loft Studio in the Central Area 1',

@@ -1,6 +1,6 @@
-import { offerType } from '../mock/offers-mock';
+import { OfferType } from '../mock/offers-mock';
 
-function PlaceCard({offer}:{offer: offerType}): JSX.Element {
+function PlaceCard({offer}:{offer: OfferType}): JSX.Element {
 
   const {id, title, type, price, previewImage, isFavorite, isPremium, rating} = offer;
 
