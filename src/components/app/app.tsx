@@ -5,7 +5,7 @@ import OfferPage from '../../pages/offer-page';
 import NotFoundPage from '../../pages/not-found-page';
 import PrivateRoute from '../private-route';
 import Layout from '../layout/layout';
-import { OfferType } from '../../mock/offers-mock';
+import type { OfferType } from '../../mock/offers-mock';
 import { AppRoute } from '../const';
 import { getAuthorizationStatus } from '../../utils/authtorization-status';
 import {
@@ -13,12 +13,14 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import { ReviewType } from '../../mock/reviews-mock';
 
-type Offers = {
+type AppProps = {
   offers: OfferType[];
+  reviews: ReviewType[];
 }
 
-function App({offers} : Offers): JSX.Element {
+function App({offers, reviews}: AppProps): JSX.Element {
   const authorizationStatus = getAuthorizationStatus();
 
   return (
@@ -36,7 +38,7 @@ function App({offers} : Offers): JSX.Element {
             path={AppRoute.Favorites}
             element={(
               <PrivateRoute authorizationStatus={authorizationStatus}>
-                <FavoritePage />
+                <FavoritePage offers = {offers} />
               </PrivateRoute>
             )}
           />
@@ -52,7 +54,7 @@ function App({offers} : Offers): JSX.Element {
 
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage />}
+            element={<OfferPage offers={offers} reviews={reviews} />}
           />
           <Route
             path={'*'}

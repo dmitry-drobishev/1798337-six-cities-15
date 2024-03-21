@@ -1,7 +1,7 @@
 // import DestinationNavigationList from '../components/destination-navigation-list.js';
 // import { DESTINATIONS } from '../components/const.ts';
-import PlaceCardList from '../components/place-card-list';
-import { OfferType } from '../mock/offers-mock';
+import OffersCardList from '../components/offers-card-list';
+import type { OfferType } from '../mock/offers-mock';
 
 type MainPageProps = {
   offers: OfferType[];
@@ -69,9 +69,7 @@ function MainPage({offers}:MainPageProps): JSX.Element {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              <PlaceCardList offers = {offers} />
-            </div>
+            <OffersCardList offers = {offers} cardClassName='cities' />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
