@@ -2,24 +2,33 @@ import { Link } from 'react-router-dom';
 import type { OfferType } from '../mock/offers-mock';
 import ratingInProsent from '../utils/utils';
 
+type ImageSizeType = 'small'| 'large';
+
 type OfferCardPropsType = {
   offer:OfferType;
-  handleHover: (offer?:OfferType) => void;
+  handleHover?: (offer:OfferType | undefined) => void;
   cardClassName: string;
+  imageSize?: ImageSizeType;
 }
 
-function OfferCard({offer, handleHover, cardClassName}:OfferCardPropsType): JSX.Element {
+function getImageSize(imageSize:ImageSizeType) {
+  return imageSize === 'small'
+    ? {width: '150', height: '110'}
+    : {width: '260', height: '200'};
+}
+
+function OfferCard({offer, handleHover, cardClassName, imageSize = 'large'}:OfferCardPropsType): JSX.Element {
 
   const {id, title, type, price, isFavorite, isPremium, rating, images} = offer;
 
   const classFavoriteButton = isFavorite ? 'place-card__bookmark-button--active' : '';
 
   const handleMouseOn = () => {
-    handleHover(offer);
+    handleHover?.(offer);
   };
 
   const handleMouseOff = () => {
-    handleHover();
+    handleHover?.(undefined);
   };
 
   return (
@@ -28,7 +37,7 @@ function OfferCard({offer, handleHover, cardClassName}:OfferCardPropsType): JSX.
         {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}
         <div className={`${cardClassName}__image-wrapper place-card__image-wrapper`}>
 
-          <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={images[0]} {...getImageSize(imageSize)} alt="Place image" />
 
         </div>
         <div className={`${cardClassName}__card-info place-card__info`}>

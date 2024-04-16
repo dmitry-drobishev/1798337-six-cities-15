@@ -41,7 +41,7 @@ function OffersCardList(props: { offers: OfferType[]; cardClassName:string; acti
         </div>
       </section>
       <div className="cities__right-section">
-        <Map activeCity={props.activeCity} offers={props.offers} activeOffer = {activeOffer} />
+        <Map activeCity={props.activeCity} offers={props.offers} activeOffer = {activeOffer} className='cities__map' />
       </div>
     </div>
   );

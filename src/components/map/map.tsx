@@ -8,11 +8,12 @@ import { CitiesType, cities } from '../../mock/cities-mock';
 
 export type MapPropsType = {
   activeCity: CitiesType['name'];
-  offers: OfferType[];
-  activeOffer: OfferType | null;
+  offers: OfferType[] ;
+  activeOffer?: OfferType | null;
+  className?: string;
 };
 
-export default function Map({activeCity, offers, activeOffer}: MapPropsType): React.JSX.Element {
+export default function Map({activeCity, offers, activeOffer, className}: MapPropsType): React.JSX.Element {
   const mapContainerRef = useRef<HTMLDivElement| null>(null);
   const currentCity = cities.find((el) => el.name === activeCity);
   const map = useMap(mapContainerRef, cities[3]);
@@ -41,6 +42,6 @@ export default function Map({activeCity, offers, activeOffer}: MapPropsType): Re
   }, [map, offers, activeOffer]);
 
   return (
-    <section className="cities__map map" style={{ width: '512px' }} ref={mapContainerRef}></section>
+    <section className={`map ${className}`} ref={mapContainerRef}></section>
   );
 }
